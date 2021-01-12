@@ -38,7 +38,7 @@ def pv_mcts_scores(model, env, alpha, evaluate_count):
 
 def pv_mcts_action(model, alpha=0, evaluate_count=30):
     def pv_mcts_action(env):
-        scores = pv_mcts_scores(model, env, alpha)
+        scores = pv_mcts_scores(model, env, alpha, evaluate_count)
         legal_actions = env.get_put_place(env.current_player)
         action = np.random.choice(legal_actions, p=scores)
         policy = []
