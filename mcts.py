@@ -20,10 +20,10 @@ def nodes_to_n(nodes):
 
 
 # スコア取得
-def pv_mcts_scores(model, env, alpha):
+def pv_mcts_scores(model, env, alpha, evaluate_count):
     root_node = Node(MCTS(env), 0)
 
-    for _ in range(PV_EVALUATE_COUNT):
+    for _ in range(evaluate_count):
         root_node.evaluate(model)
     scores = nodes_to_n(root_node.child_nodes)
     # 最適行動
@@ -36,7 +36,7 @@ def pv_mcts_scores(model, env, alpha):
     return scores
 
 
-def pv_mcts_action(model, alpha=0):
+def pv_mcts_action(model, alpha=0, evaluate_count=30):
     def pv_mcts_action(env):
         scores = pv_mcts_scores(model, env, alpha)
         legal_actions = env.get_put_place(env.current_player)
