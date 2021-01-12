@@ -67,14 +67,14 @@ class DualNet(nn.Module):
 
     def save_model(self, name):
         os.makedirs(os.path.dirname(os.path.abspath(
-            __file__)) + '\\models', exist_ok=True)
+            __file__)) + '/models', exist_ok=True)
         path = os.path.join(os.path.dirname(
-            os.path.abspath(__file__)) + '\\models', name + '.ckpt')
+            os.path.abspath(__file__)) + '/models', name + '.ckpt')
         torch.save({'model': self.state_dict()}, path)
 
     def load_model(self, name):
         path = os.path.join(os.path.dirname(
-            os.path.abspath(__file__)) + '\\models', name + '.ckpt')
+            os.path.abspath(__file__)) + '/models', name + '.ckpt')
         checkpoint = torch.load(path)
         self.load_state_dict(checkpoint['model'])
 
